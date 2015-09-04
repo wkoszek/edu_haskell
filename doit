@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+require 'yaml'
+
+y = YAML.load(File.open("haskell.yml").read())
+y.each_with_index do |prog, pi|
+	nam = prog['nam']
+	src = prog['src']
+	exp = prog['exp']
+	fn_hs  = "#{pi.to_s}_#{nam}.hs"
+	fn_exp = "#{pi.to_s}_#{nam}.exp"
+
+	print "Generating #{fn_hs}, #{fn_exp}\n"
+	File.open(fn_hs,  "w").write(src)
+	File.open(fn_exp, "w").write(exp)
+end
+
+mk = <<MK
+HS=$(wildcard *.hs)
+O=$(HS:.hs=.o)
+all: $O
+%.o: %.hs
+	ghci < $< | grep ^Prelude | grep -v Leaving > $@; diff -u $(basename $<).exp $@
+clean:
+	rm -rf *.hs makefile *.o *.exp
+MK
+File.open("makefile", "w").write(mk)

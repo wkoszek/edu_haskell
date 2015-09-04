@@ -1,0 +1,13 @@
+-
+  nam: p6
+  src: >
+        1 == 1
+  exp: >
+        Prelude> True
+-
+  nam: p6
+  src: >
+        2 /= 3
+  exp: >
+        Prelude> True
+
