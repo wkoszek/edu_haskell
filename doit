@@ -24,4 +24,8 @@ all: $O
 clean:
 	rm -rf *.hs makefile *.o *.exp
 MK
-File.open("makefile", "w").write(mk)
+f = File.open("makefile", "w")
+f.write(mk)
+f.close()
+
+system('make')
