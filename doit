@@ -11,8 +11,8 @@ y.each_with_index do |prog, pi|
 	fn_exp = "#{pi.to_s}_#{nam}.exp"
 
 	print "Generating #{fn_hs}, #{fn_exp}\n"
-	File.open(fn_hs,  "w").write(src)
-	File.open(fn_exp, "w").write(exp)
+	File.open(fn_hs,  "w") { |f| f.write(src) }
+	File.open(fn_exp, "w") { |f| f.write(exp) }
 end
 
 mk = <<MK
@@ -24,8 +24,6 @@ all: $O
 clean:
 	rm -rf *.hs makefile *.o *.exp
 MK
-f = File.open("makefile", "w")
-f.write(mk)
-f.close()
+f = File.open("makefile", "w") { |f| f.write(mk) }
 
 system('make')
