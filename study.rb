@@ -4,11 +4,14 @@ require 'readline'
 
 home = ENV['HOME']
 Dir.mkdir(home + "/.hs") if not File.exists?(home + "/.hs")
+cmdi = 0
 inp = ""
 ret = ""
 out = ""
 fn = ""
-while cmd = Readline.readline('[e,s,c,r,i,m,q]> ', true)
+name = ""
+while cmd = Readline.readline(("[e,s,c,r,i,m,n,w,q] %3d >" % cmdi), true)
+	cmdi += 1
 	case cmd
 	when /^e/ then
 		print "# editing\n"
@@ -52,9 +55,13 @@ while cmd = Readline.readline('[e,s,c,r,i,m,q]> ', true)
 			system("vim #{fn}")
 			inp = `cat #{fn}`
 		end
+	when /^n/
+		print "# Enter program's name:\n"
+		name = gets.strip()
+		print "# Got name #{name}\n"
 	when /^i/
-		out += "-\n"
-		out += "  nam: <unset>\n"
+		out = "-\n"
+		out += "  nam: #{name}\n"
 		out += "  src: >\n"
 		inp.split("\n").each do |l|
 			out += "    #{l}\n"
@@ -64,7 +71,14 @@ while cmd = Readline.readline('[e,s,c,r,i,m,q]> ', true)
 			out += "    #{l}\n"
 		end
 		print out
+	when /^w/
+		tmp = home + "/.hs/#{fn}.yml"
+		f = File.open(tmp).write(out)
+		f.close()
+		print "# #{tmp} written #{out.count} bytes\n"
 	when /^q/
 		exit 0
+	else
+		print "unknown command\n"
 	end
 end
