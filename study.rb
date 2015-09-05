@@ -9,7 +9,8 @@ ret = ""
 out = ""
 fn = ""
 while cmd = Readline.readline('[e,s,c,r,i,m,q]> ', true)
-	if cmd =~ /^e/ then
+	case cmd
+	when /^e/ then
 		print "# editing\n"
 		while line = $stdin.gets
 			inp += line
@@ -20,23 +21,19 @@ while cmd = Readline.readline('[e,s,c,r,i,m,q]> ', true)
 		written = f.write(inp)
 		f.close()
 		print "# #{fn} written #{written} bytes\n"
-	end
-	if cmd =~ /^s/ then
+	when /^s/
 		print "# show:\n#{inp}"
-	end
-	if cmd =~ /^c/ then
+	when /^c/
 		print "# cleared\n"
 		inp = ""
 		ret = ""
 		out = ""
 		fn = ""
-	end
-	if cmd =~ /^r/ then
+	when /^r/
 		print "# running:\n"
 		ret = `ghci < _.h`
 		print ret
-	end
-	if cmd =~ /^m/ then
+	when /^m/
 		last_fi = 0
 		files = []
 		Dir.open(home + "/.hs")
@@ -55,8 +52,7 @@ while cmd = Readline.readline('[e,s,c,r,i,m,q]> ', true)
 			system("vim #{fn}")
 			inp = `cat #{fn}`
 		end
-	end
-	if cmd =~ /^i/ then
+	when /^i/
 		out += "-\n"
 		out += "  nam: <unset>\n"
 		out += "  src: >\n"
@@ -68,8 +64,7 @@ while cmd = Readline.readline('[e,s,c,r,i,m,q]> ', true)
 			out += "    #{l}\n"
 		end
 		print out
-	end
-	if cmd =~ /^q/ then
+	when /^q/
 		exit 0
 	end
 end
