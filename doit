@@ -20,7 +20,7 @@ HS=$(wildcard *.hs)
 O=$(HS:.hs=.o)
 all: $O
 %.o: %.hs
-	ghci < $< | grep ^Prelude | grep -v Leaving > $@; diff -u $(basename $<).exp $@
+	ghci < $< 2>&1 | egrep -v '(version|Loading|Leaving)' > $@; diff -u $(basename $<).exp $@
 clean:
 	rm -rf *.hs makefile *.o *.exp
 MK
