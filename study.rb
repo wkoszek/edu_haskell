@@ -10,8 +10,9 @@ ret = ""
 out = ""
 fn = ""
 name = ""
-while cmd = Readline.readline(("[e,s,c,r,i,m,n,w,q] %3d >" % cmdi), true)
-	cmdi += 1
+cmdbuf = [ '?' ]
+while not cmdbuf.empty?
+	cmd = cmdbuf.pop()
 	case cmd
 	when /^e/ then
 		print "# editing\n"
@@ -67,9 +68,10 @@ while cmd = Readline.readline(("[e,s,c,r,i,m,n,w,q] %3d >" % cmdi), true)
 			out += "    #{l}\n"
 		end
 		out += "  exp: |\n"
-		ret.split("\n").each do |l|
+		ret.split("\n")
 				.select{ |l| not l =~ /(version|Loading|Leaving)/ }
-			out += "    #{l}\n"
+				.each do |line|
+			out += "    #{line}\n"
 		end
 		print out
 	when /^w/
@@ -78,9 +80,19 @@ while cmd = Readline.readline(("[e,s,c,r,i,m,n,w,q] %3d >" % cmdi), true)
 		f.write(out)
 		f.close()
 		print "# #{tmp} written #{out.length} bytes\n"
+	when /^h/
+		print "# help\n"
+		print "e: edit    s: show   n: name   r: run   i: inspect\n"
+		print "m: modify  w: write  q: quit   h: help\n"
 	when /^q/
 		exit 0
 	else
 		print "unknown command\n"
 	end
+
+	while cmdbuf.empty?
+		cmd = Readline.readline(("[e,s,c,r,i,m,n,w,q] %3d >" % cmdi), true)
+		cmdbuf = cmd.split("").reverse
+	end
+	cmdi += 1
 end
