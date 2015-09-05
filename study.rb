@@ -61,11 +61,11 @@ while cmd = Readline.readline(("[e,s,c,r,i,m,n,w,q] %3d >" % cmdi), true)
 	when /^i/
 		out = "-\n"
 		out += "  nam: #{name}\n"
-		out += "  src: >\n"
+		out += "  src: |\n"
 		inp.split("\n").each do |l|
 			out += "    #{l}\n"
 		end
-		out += "  exp: >\n"
+		out += "  exp: |\n"
 		ret.split("\n").each do |l|
 				#.select{ |l| l =~ /^P/ and not l =~ /Leaving/ }
 			out += "    #{l}\n"
