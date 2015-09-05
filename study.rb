@@ -37,10 +37,23 @@ while cmd = Readline.readline('[e,s,c,r,i,m,q]> ', true)
 		print ret
 	end
 	if cmd =~ /^m/ then
-		files = Dir.open(home + "/.hs").map{ |f| home + "/" + f }
-						.select{ |f| f =~ /^\./ }
-		files.each_with_index do |f, fi|
+		last_fi = 0
+		files = []
+		Dir.open(home + "/.hs")
+				.select{ |f| not f =~ /^\./ }
+				.map{ |f| home + "/.hs/" + f }
+				.each_with_index do |f, fi|
 			print "%03d %s\n" % [fi, f]
+			files << f
+			last_fi = fi
+		end
+		which = gets.scan(/\d+/)[0].to_i
+		if which > last_fi then
+			print "Number #{which} to big. #{last_fi} is the last one"
+		else
+			fn = files[which]
+			system("vim #{fn}")
+			inp = `cat #{fn}`
 		end
 	end
 	if cmd =~ /^i/ then
