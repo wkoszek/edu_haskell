@@ -1,13 +1,20 @@
 -
   nam: p6
-  src: >
+  src: |
         1 == 1
-  exp: >
+  exp: |
         Prelude> True
 -
   nam: p6
-  src: >
+  src: |
         2 /= 3
-  exp: >
+  exp: |
         Prelude> True
 
+-
+  nam: wojte
+  src: |
+    hello "w"
+  exp: |
+    Prelude> 
+    <interactive>:2:1: Not in scope: ‘hello’
