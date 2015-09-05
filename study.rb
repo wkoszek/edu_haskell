@@ -35,6 +35,7 @@ while cmd = Readline.readline(("[e,s,c,r,i,m,n,w,q] %3d >" % cmdi), true)
 	when /^r/
 		print "# running:\n"
 		ret = `ghci < #{fn} 2>&1`
+		print ret
 	when /^m/
 		last_fi = 0
 		files = []
