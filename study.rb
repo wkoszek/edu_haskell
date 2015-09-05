@@ -68,7 +68,7 @@ while cmd = Readline.readline(("[e,s,c,r,i,m,n,w,q] %3d >" % cmdi), true)
 		end
 		out += "  exp: |\n"
 		ret.split("\n").each do |l|
-				#.select{ |l| l =~ /^P/ and not l =~ /Leaving/ }
+				.select{ |l| not l =~ /(version|Loading|Leaving)/ }
 			out += "    #{l}\n"
 		end
 		print out
