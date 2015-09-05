@@ -34,8 +34,7 @@ while cmd = Readline.readline(("[e,s,c,r,i,m,n,w,q] %3d >" % cmdi), true)
 		fn = ""
 	when /^r/
 		print "# running:\n"
-		ret = `ghci < _.h`
-		print ret
+		ret = `ghci < #{fn} 2>&1`
 	when /^m/
 		last_fi = 0
 		files = []
@@ -66,16 +65,18 @@ while cmd = Readline.readline(("[e,s,c,r,i,m,n,w,q] %3d >" % cmdi), true)
 		inp.split("\n").each do |l|
 			out += "    #{l}\n"
 		end
-		out += "  exp:\n"
-		ret.split("\n").select{ |l| l =~ /^P/ and not l =~ /Leaving/ }.each do |l|
+		out += "  exp: >\n"
+		ret.split("\n").each do |l|
+				#.select{ |l| l =~ /^P/ and not l =~ /Leaving/ }
 			out += "    #{l}\n"
 		end
 		print out
 	when /^w/
-		tmp = home + "/.hs/#{fn}.yml"
-		f = File.open(tmp).write(out)
+		tmp = "#{fn}.yml"
+		f = File.open(tmp, "w")
+		f.write(out)
 		f.close()
-		print "# #{tmp} written #{out.count} bytes\n"
+		print "# #{tmp} written #{out.length} bytes\n"
 	when /^q/
 		exit 0
 	else
