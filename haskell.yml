@@ -40,3 +40,9 @@
       ...
       	-- Defined in ‘GHC.Num’
     infixl 6 +
+-
+  nam: type_of_list
+  src: |
+    :type (1, 2)
+  exp: |
+    Prelude> (1, 2) :: (Num t1, Num t) => (t, t1)
