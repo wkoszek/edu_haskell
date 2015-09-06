@@ -18,3 +18,25 @@
   exp: |
     Prelude> 
     <interactive>:2:1: Not in scope: ‘hello’
+-
+  nam: checking_type_of_a
+  src: |
+    :type 'a'
+  exp: |
+    Prelude> 'a' :: Char
+-
+  nam: glueing_lists
+  src: |
+    [1,2] ++ [3,4]
+  exp: |
+    Prelude> [1,2,3,4]
+-
+  nam: operator_plus_presence
+  src: |
+    :info (+)
+  exp: |
+    Prelude> class Num a where
+      (+) :: a -> a -> a
+      ...
+      	-- Defined in ‘GHC.Num’
+    infixl 6 +
