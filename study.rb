@@ -80,6 +80,11 @@ while not cmdbuf.empty?
 		f.write(out)
 		f.close()
 		print "# #{tmp} written #{out.length} bytes\n"
+	when /^a/
+		print "# Appending\n"
+		f = File.open("haskell.yml", "a")
+		f.write(out)
+		f.close()
 	when /^h/
 		print "# help\n"
 		print "e: edit    s: show   n: name   r: run   i: inspect\n"
