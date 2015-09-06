@@ -10,7 +10,7 @@ ret = ""
 out = ""
 fn = ""
 name = ""
-cmdbuf = [ '?' ]
+cmdbuf = [ 'h' ]
 while not cmdbuf.empty?
 	cmd = cmdbuf.pop()
 	case cmd
