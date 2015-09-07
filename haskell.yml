@@ -192,3 +192,22 @@
   exp: |
     Prelude> 
     <interactive>:2:9: parse error on input ‘=’
+-
+  nam: trying_to_redef_variable
+  src: |
+    x = 10
+    x = 11
+    print x
+  exp: |
+    Prelude> 
+    <interactive>:2:3: parse error on input ‘=’
+    Prelude> 
+    <interactive>:3:3: parse error on input ‘=’
+    Prelude> 
+    <interactive>:4:7: Not in scope: ‘x’
+-
+  nam: lines_method
+  src: |
+    lines "the quick\nbrown\nfox"
+  exp: |
+    Prelude> ["the quick","brown","fox"]
