@@ -87,6 +87,7 @@ while not cmdbuf.empty?
 		f.close()
 	when /^h/
 		print "# help\n"
+		print "# popular: enriac\n"
 		print "e: edit    s: show   n: name   r: run   i: inspect\n"
 		print "m: modify  w: write  q: quit   h: help\n"
 	when /^q/
