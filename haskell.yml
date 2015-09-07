@@ -99,3 +99,96 @@
   exp: |
     Prelude> 1
     Prelude> "oj"
+-
+  nam: type_of_it
+  src: |
+    :type it
+  exp: |
+    Prelude> 
+    <interactive>:1:1:
+        Not in scope: ‘it’
+        Perhaps you meant ‘id’ (imported from Prelude)
+-
+  nam: type_of_it_after_a
+  src: |
+    :type 'a'
+    :type it
+  exp: |
+    Prelude> 'a' :: Char
+    Prelude> 
+    <interactive>:1:1:
+        Not in scope: ‘it’
+        Perhaps you meant ‘id’ (imported from Prelude)
+-
+  nam: wordcount_program
+  src: |
+    main = interact wordCount
+               where wordCount input = show (length(lines input)) ++ "\n"
+  exp: |
+    Prelude> 
+    <interactive>:2:6: parse error on input ‘=’
+    Prelude> 
+    <interactive>:3:12: parse error on input ‘where’
+-
+  nam: array_head
+  src: |
+    head [ 1, 2, 3, 4 ]
+    head [ 'a', 'b', 'c', 'd' ]
+  exp: |
+    Prelude> 1
+    Prelude> 'a'
+-
+  nam: tail_of_array
+  src: |
+    tail [ 1, 2, 3, 4]
+    tail [ 'a', 'e', 'f' ]
+  exp: |
+    Prelude> [2,3,4]
+    Prelude> "ef"
+-
+  nam: tuples
+  src: |
+    (1987, "wojtek)
+    (1984, "taku)
+  exp: |
+    Prelude> 
+    <interactive>:2:16:
+        lexical error in string/character literal at end of input
+    Prelude> 
+    <interactive>:3:14:
+        lexical error in string/character literal at end of input
+-
+  nam: take_and_drop
+  src: |
+    take 2 [ 1, 2, 3, 4]
+    drop 2 [ 1, 2, 3, 4]
+  exp: |
+    Prelude> [1,2]
+    Prelude> [3,4]
+-
+  nam: fst_and_snd
+  src: |
+    fst (1, 'a')
+    snd (2, 'b')
+  exp: |
+    Prelude> 1
+    Prelude> 'b'
+-
+  nam: type_of_lines
+  src: |
+    :type lines
+  exp: |
+    Prelude> lines :: String -> [String]
+-
+  nam: type_of_readfile
+  src: |
+    :type readFile
+  exp: |
+    Prelude> readFile :: FilePath -> IO String
+-
+  nam: define_add
+  src: |
+    add a b = a + b
+  exp: |
+    Prelude> 
+    <interactive>:2:9: parse error on input ‘=’
