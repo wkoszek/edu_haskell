@@ -211,3 +211,23 @@
     lines "the quick\nbrown\nfox"
   exp: |
     Prelude> ["the quick","brown","fox"]
+-
+  nam: type_of_last
+  src: |
+    :type last
+  exp: |
+    Prelude> last :: [a] -> a
+-
+  nam: last_of_array
+  src: |
+    last [1,2,3,4]
+  exp: |
+    Prelude> 4
+-
+  nam: simple_data_keyword
+  src: |
+    data BookInfo = Book Int String [String]
+                    deriving (Show)
+  exp: |
+    Prelude> Prelude> 
+    <interactive>:3:17: parse error on input ‘deriving’
