@@ -267,3 +267,25 @@
     Prelude> [1 of 1] Compiling Main             ( ah_3arg.hs, interpreted )
     Ok, modules loaded: Main.
     *Main> my3 :: Num a => a -> a -> a -> a
+-
+  nam: type_of_bookinfo
+  src: |
+    :load ag_simple_data.hs
+    Book 123 "sample book" ["author", "author2"]
+    :type it
+  exp: |
+    Prelude> [1 of 1] Compiling Main             ( ag_simple_data.hs, interpreted )
+    Ok, modules loaded: Main.
+    *Main> Book 123 "sample book" ["author","author2"]
+    *Main> it :: BookInfo
+-
+  nam: book_def
+  src: |
+    Book 4534 "This is a book title" ["Author", "Some other author"
+    ]
+  exp: |
+    Prelude> 
+    <interactive>:2:64:
+        parse error (possibly incorrect indentation or mismatched brackets)
+    Prelude> 
+    <interactive>:3:1: parse error on input ‘]’
