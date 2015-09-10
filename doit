@@ -2,6 +2,7 @@
 
 require 'yaml'
 
+fns_hs = ""
 y = YAML.load(File.open("haskell.yml").read())
 y.each_with_index do |prog, pi|
 	nam = prog['nam']
@@ -10,13 +11,15 @@ y.each_with_index do |prog, pi|
 	fn_hs  = "%03d_#{nam}.hs" % pi
 	fn_exp = "%03d_#{nam}.exp" % pi
 
+	fns_hs += " #{fn_hs}"
+
 	print "Generating #{fn_hs}, #{fn_exp}\n"
 	File.open(fn_hs,  "w") { |f| f.write(src) }
 	File.open(fn_exp, "w") { |f| f.write(exp) }
 end
 
 mk = <<MK
-HS=$(wildcard *.hs)
+HS=#{fns_hs}
 O=$(HS:.hs=.o)
 all: $O
 %.o: %.hs
