@@ -289,3 +289,87 @@
         parse error (possibly incorrect indentation or mismatched brackets)
     Prelude> 
     <interactive>:3:1: parse error on input ‘]’
+-
+  nam: redef_var_with_let
+  src: |
+    let x = 1
+    let x = 2
+    x 
+  exp: |
+    Prelude> Prelude> Prelude> 2
+-
+  nam: billing_type
+  src: |
+    :load al_billing.hs
+    :type CreditCard
+    :type CashAmount
+    :type Name
+  exp: |
+    Prelude> [1 of 1] Compiling Main             ( al_billing.hs, interpreted )
+    Ok, modules loaded: Main.
+    *Main> CreditCard :: CreditNumber -> Billing
+    *Main> CashAmount :: Billing
+    *Main> Name :: LastName -> Address -> Billing
+-
+  nam: box_dim
+  src: |
+    type BoxDim = Int Int Int
+    type Box = Int Int Int
+  exp: |
+    Prelude> 
+    <interactive>:2:15:
+        ‘Int’ is applied to too many type arguments
+        In the type ‘Int Int Int’
+        In the type declaration for ‘BoxDim’
+    Prelude> 
+    <interactive>:3:12:
+        ‘Int’ is applied to too many type arguments
+        In the type ‘Int Int Int’
+        In the type declaration for ‘Box’
+-
+  nam: box_dim2
+  src: |
+    data BoxDim = Int Int Int
+    data Box = Int Int Int
+  exp: |
+-
+  nam: enums
+  src: |
+    data Colors =
+    Red |
+    Blue |
+    Green |
+    Purple
+    | deriving (Eq, Show)
+  exp: |
+    Prelude> 
+    <interactive>:2:14:
+        parse error (possibly incorrect indentation or mismatched brackets)
+    Prelude> 
+    <interactive>:3:5: parse error on input ‘|’
+    Prelude> 
+    <interactive>:4:6: parse error on input ‘|’
+    Prelude> 
+    <interactive>:5:7: parse error on input ‘|’
+    Prelude> 
+    <interactive>:6:1: Not in scope: data constructor ‘Purple’
+    Prelude> 
+    <interactive>:7:1: parse error on input ‘|’
+-
+  nam: enum
+  src: |
+    :load am_enum.hs
+  exp: |
+    Prelude> [1 of 1] Compiling Main             ( am_enum.hs, interpreted )
+    
+    am_enum.hs:7:1:
+        Parse error: naked expression at top level
+        Perhaps you intended to use TemplateHaskell
+    Failed, modules loaded: none.
+-
+  nam: enum
+  src: |
+    :load am_enum.hs
+  exp: |
+    Prelude> [1 of 1] Compiling Main             ( am_enum.hs, interpreted )
+    Ok, modules loaded: Main.
