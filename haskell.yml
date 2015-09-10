@@ -362,3 +362,29 @@
   exp: |
     Prelude> [1 of 1] Compiling Main             ( am_enum.hs, interpreted )
     Ok, modules loaded: Main.
+-
+  nam: trying_sum_list
+  src: |
+    :load ao_sumlist.hs
+    sumList [1, 4, 7]
+  exp: |
+    Prelude> [1 of 1] Compiling Main             ( ao_sumlist.hs, interpreted )
+    Ok, modules loaded: Main.
+    *Main> 12
+-
+  nam: trying_sumlist2
+  src: |
+    :load ao_sumlist.hs
+    sumList [1, 4, 7]
+    :load ap_sumlist_debug.hs
+    sumList [1, 2, 4]
+  exp: |
+    Prelude> [1 of 1] Compiling Main             ( ao_sumlist.hs, interpreted )
+    Ok, modules loaded: Main.
+    *Main> 12
+    *Main> [1 of 1] Compiling Main             ( ap_sumlist_debug.hs, interpreted )
+    Ok, modules loaded: Main.
+    *Main> 
+    <interactive>:5:1:
+        No instance for (Show (IO b0)) arising from a use of ‘print’
+        In a stmt of an interactive GHCi command: print it
