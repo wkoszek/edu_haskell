@@ -25,7 +25,7 @@ all: $O
 %.o: %.hs
 	ghci < $< 2>&1 | egrep -v '(version|Loading|Leaving)' > $@; diff -u $(basename $<).exp $@
 clean:
-	rm -rf #{fns_hs} makefile *.o *.exp
+	rm -rf #{fns_hs} makefile *.o *.exp *.hi
 MK
 f = File.open("makefile", "w") { |f| f.write(mk) }
 
