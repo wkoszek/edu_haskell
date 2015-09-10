@@ -231,3 +231,39 @@
   exp: |
     Prelude> Prelude> 
     <interactive>:3:17: parse error on input ‘deriving’
+-
+  nam: list_concat
+  src: |
+    1: [2,3]
+  exp: |
+    Prelude> [1,2,3]
+-
+  nam: list_concat_wrong
+  src: |
+    [2, 3] : 1
+  exp: |
+    Prelude> 
+    <interactive>:2:1:
+        No instance for (Num [[t0]]) arising from a use of ‘it’
+        In a stmt of an interactive GHCi command: print it
+-
+  nam: length_of_array
+  src: |
+    length [1,2,3]
+  exp: |
+    Prelude> 3
+-
+  nam: type_of_take
+  src: |
+    :type take
+  exp: |
+    Prelude> take :: Int -> [a] -> [a]
+-
+  nam: type_of_3arg_func
+  src: |
+    :load ah_3arg.hs
+    :type my3
+  exp: |
+    Prelude> [1 of 1] Compiling Main             ( ah_3arg.hs, interpreted )
+    Ok, modules loaded: Main.
+    *Main> my3 :: Num a => a -> a -> a -> a
