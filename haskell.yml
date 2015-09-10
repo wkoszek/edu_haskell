@@ -361,15 +361,4 @@
     :load am_enum.hs
   exp: |
     Prelude> [1 of 1] Compiling Main             ( am_enum.hs, interpreted )
-    
-    am_enum.hs:7:1:
-        Parse error: naked expression at top level
-        Perhaps you intended to use TemplateHaskell
-    Failed, modules loaded: none.
--
-  nam: enum
-  src: |
-    :load am_enum.hs
-  exp: |
-    Prelude> [1 of 1] Compiling Main             ( am_enum.hs, interpreted )
     Ok, modules loaded: Main.
