@@ -33,6 +33,7 @@ while not cmdbuf.empty?
 		ret = ""
 		out = ""
 		fn = ""
+		name = ""
 	when /^r/
 		print "# running:\n"
 		ret = `ghci < #{fn} 2>&1`
