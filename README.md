@@ -72,3 +72,8 @@ echos "Hello world":
 	Prelude> "Hello world"
 	Prelude> Leaving GHCi.
 	# Appending
+
+# Author
+
+- Wojciech Adam Koszek, [wojciech@koszek.com](mailto:wojciech@koszek.com)
+- [http://www.koszek.com](http://www.koszek.com)
