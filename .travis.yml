@@ -1,4 +1,6 @@
 language: haskell
+install:
+- echo no need for cabal
 script:
 - ./doit
 
