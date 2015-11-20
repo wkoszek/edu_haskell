@@ -1,5 +1,7 @@
 # My Haskell Education
 
+[![Build Status](https://travis-ci.org/wkoszek/haskell_edu.svg?branch=master)](https://travis-ci.org/wkoszek/haskell_edu)
+
 This repo has a small script `study.rb` for typing examples from a "Real
 World Haskell" book. You type an example, run it and if you like the result,
 you can remember it in the "database" file called `haskell.yml`. The file
